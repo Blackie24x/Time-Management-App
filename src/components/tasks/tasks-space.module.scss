@@ -1,0 +1,295 @@
+.tasksSpace {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  // left: -100%;
+  overflow: hidden;
+  transition: 0.3s;
+  flex-direction: column;
+  align-items: center;
+  &__tasksFilterWrap {
+    margin-top: 40px;
+    width: 88%;
+    padding: 5px;
+    border-radius: 12px;
+    max-width: 400px;
+    background: rgb(248, 248, 248);
+  }
+  &__tasksFilter {
+    display: flex;
+    // background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  &__pickToDo,
+  &__pickDone {
+    z-index: 10;
+    width: 50%;
+    padding: 4px;
+    text-align: center;
+    cursor: pointer;
+    // font-weight: 500;
+    font-size: 14px;
+    transition: 0.3s;
+    color: var(--text-color-light);
+  }
+  &__highlight {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border: 1px solid rgb(232, 232, 232);
+    border-radius: 10px;
+    background: white;
+    transition: 0.3s;
+  }
+  &__tasksArea {
+    margin-top: 40px;
+    // height: 60vh;
+    width: 100%;
+    // overflow: hidden;
+    position: relative;
+    // background: rgb(251, 251, 251);
+    // background: #f4f7ff;
+  }
+  &__ToDo {
+    width: 100%;
+    left: 0%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: 0.3s;
+  }
+  &__complete {
+    left: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    transition: 0.3s;
+  }
+  &__anyComplete {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  &__completeTask {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px 0;
+    height: 50px;
+    // box-shadow: 0px 0px 4px 0px #eee;
+    // border: 1px solid rgb(235, 235, 235);
+    // border-width: 0px 0 2px 0;
+    box-shadow: 0px 0px 4px 0px rgb(230, 230, 230);
+
+    // &:first-child {
+    //   border-width: 2px 0 2px 0;
+    // }
+  }
+  &__doneIcon {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--theme-color-green);
+  }
+  &__completeName {
+    margin-left: 16px;
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color-extra-light);
+    text-decoration: line-through;
+  }
+  &__addTask {
+    cursor: pointer;
+    padding: 0 25px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    // &:hover {
+    //   border: 1px solid #eee;
+    //   border-width: 1px 0 1px 0;
+    // }
+
+    p {
+      font-size: 15px;
+    }
+  }
+  &__task {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px 0 25px;
+    height: 50px;
+    box-shadow: 0px 0px 4px 0px rgb(230, 230, 230);
+    // border: 1px solid rgb(235, 235, 235);
+    // border-width: 2px 0 2px 0;
+  }
+  &__taskName {
+    font-size: 14px;
+    color: var(--text-color);
+    font-weight: 500;
+    flex-grow: 1;
+  }
+  &__options {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  &__delete,
+  &__restore {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    font-size: 18px;
+    color: var(--text-color-extra-light);
+    justify-content: center;
+    align-items: center;
+  }
+  &__iconWrap {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    font-size: 14px;
+    color: var(--text-color-extra-light);
+    justify-content: center;
+    align-items: center;
+  }
+  &__doneCheck {
+    height: 16px;
+    margin-right: 16px;
+    width: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid var(--secondary-color);
+    &:hover {
+      svg {
+        opacity: 0;
+      }
+    }
+    svg {
+      opacity: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .tasksSpace {
+    &__tasksFilterWrap {
+      margin-top: 50px;
+    }
+    &__tasksArea {
+      margin-top: 40px;
+    }
+    &__task {
+      width: 90%;
+      border-radius: 6px;
+      max-width: 600px;
+    }
+    &__completeTask {
+      width: 90%;
+      border-radius: 6px;
+      max-width: 600px;
+    }
+    &__options {
+      gap: 16px;
+    }
+    &__doneCheck {
+      margin-right: 24px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .tasksSpace {
+    position: static;
+    width: 30%;
+    &__tasksArea {
+      padding-top: 10px;
+      overflow: hidden;
+    }
+    &__ToDo {
+      padding: 0 5%;
+    }
+    &__complete {
+      padding: 0 5%;
+    }
+
+    &__tasksFilterWrap {
+      margin-top: 50px;
+    }
+    &__anyComplete {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 17px;
+    }
+    // &__tasksArea {
+    //   margin-top: 36px;
+    // }
+    &__task {
+      width: 100%;
+    }
+    &__completeTask {
+      width: 100%;
+    }
+    &__options {
+      gap: 16px;
+    }
+    &__doneCheck {
+      margin-right: 24px;
+    }
+  }
+}
+@media (min-width: 1920px) {
+  .tasksSpace {
+    position: static;
+    width: 30%;
+    &__tasksArea {
+      padding-top: 10px;
+      overflow: hidden;
+    }
+    &__ToDo {
+      padding: 0 5%;
+    }
+    &__complete {
+      padding: 0 5%;
+    }
+
+    &__tasksFilterWrap {
+      margin-top: 50px;
+    }
+    &__tasksArea {
+      margin-top: 50px;
+    }
+    &__task {
+      width: 100%;
+      border-radius: 6px;
+      max-width: 600px;
+    }
+    &__options {
+      gap: 14px;
+    }
+    &__doneCheck {
+      margin-right: 24px;
+    }
+  }
+}

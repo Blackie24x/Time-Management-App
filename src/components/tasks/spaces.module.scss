@@ -1,0 +1,121 @@
+.spaces {
+  border-bottom: 1px solid rgb(239, 239, 239);
+  width: 100%;
+  position: relative;
+  padding: 0 5%;
+  &__container {
+    height: 100%;
+    display: flex;
+    // width: 100%;
+    margin: 0 auto;
+    max-width: 1500px;
+    text-align: center;
+    display: flex;
+    position: relative;
+    gap: 5%;
+    justify-content: flex-start;
+  }
+  &__spaces-border {
+    width: 30%;
+    left: 0%;
+    bottom: 0;
+    height: 4px;
+    border-radius: 5px;
+    position: absolute;
+    transition: 0.2s;
+  }
+  &__space {
+    width: 30%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    padding-bottom: 14px;
+
+    // background: red;
+  }
+  &__spaceName {
+    font-size: 14px;
+    color: var(--text-color-extra-light);
+    // font-weight: 500;
+  }
+  &__addSpaceName {
+    font-size: 14px;
+    color: var(--text-color-extra-light);
+    // font-weight: 500;
+  }
+  &__add-space {
+    cursor: pointer;
+
+    width: 30%;
+    display: flex;
+    position: relative;
+    padding-bottom: 16px;
+    justify-content: center;
+    color: var(--text-color-extra-light);
+    font-size: 14px;
+    transition: 0.3s;
+    &:hover .spaces__theme {
+      background: #bebebe;
+    }
+
+    svg {
+      margin-right: 6px;
+    }
+    // background: blue;
+  }
+  &__theme {
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background: #e1e1e1;
+    border-radius: 5px;
+    position: absolute;
+    transition: 0.3s;
+  }
+}
+
+@media (min-width: 768px) {
+  .spaces {
+    &__space {
+      padding-bottom: 18px;
+    }
+    &__spaceName {
+      font-size: 15px;
+    }
+    &__addSpaceName {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .spaces {
+    border: none;
+    &__space {
+      padding-bottom: 20px;
+    }
+    &__spaceName {
+      font-size: 17px;
+      // font-weight: 500;
+    }
+    &__addSpaceName {
+      font-size: 17px;
+    }
+  }
+}
+
+@media (min-width: 1920px) {
+  .spaces {
+    border: none;
+    &__space {
+      padding-bottom: 24px;
+    }
+    &__spaceName {
+      font-size: 18px;
+      // font-weight: 500;
+    }
+    &__addSpaceName {
+      font-size: 18px;
+    }
+  }
+}

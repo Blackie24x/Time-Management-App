@@ -1,0 +1,27 @@
+:root {
+  --primary-color: rgb(255, 255, 255);
+  --secondary-color: #5f81ff;
+  --secondary-color-dark: #3661ff;
+  --secondary-color-light: #dee5ff;
+  --theme-color-green: #2ecd6f;
+  --text-color: #292d34;
+  --text-color-light: #7c828d;
+  --text-color-extra-light: #bebebe;
+
+  --h1-font: 1.75rem;
+  --h2-font: 1.5rem;
+  --h3-font: 1.375rem;
+  --h4-font: 1.25rem;
+  --p-bigger-font: 1.125rem;
+  --p-font: 1rem;
+  --p-smaller-font: 0.875rem;
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --h1-font: 2rem;
+    --h2-font: 1.75rem;
+    --h3-font: 1.5rem;
+    --h4-font: 1.375rem;
+  }
+}
