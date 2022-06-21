@@ -39,12 +39,11 @@ const colors = [
 const AddSpaceDesktop = ({
   setSpaces,
   spaces,
+  addSpaceIsActive,
   setAddSpaceIsActive,
   setActiveSpace,
   activeSpaceIndex,
   spaceIndex,
-  isAdding,
-  setIsAdding,
 }) => {
   const [pickedColor, setPickedColor] = useState("");
   const [pickedName, setPickedName] = useState("");
@@ -63,7 +62,7 @@ const AddSpaceDesktop = ({
         <div className={styles.addSpace__colorWrap}>
           <div
             className={styles.addSpace__color}
-            style={{ background: color }}
+            style={{ background: color, color: color }}
             onClick={() => {
               setPickedColor(color);
             }}
@@ -72,10 +71,11 @@ const AddSpaceDesktop = ({
       );
     });
   };
+  console.log(addSpaceIsActive);
   return (
     <section
       className={styles.addSpace}
-      style={{ opacity: isAdding ? "1" : "0" }}
+      style={{ opacity: addSpaceIsActive ? "1" : "0" }}
     >
       <div className={styles.addSpace__wrap}>
         {/* <p className={`${styles.addSpace__title} bigger`}>Add New Space</p> */}

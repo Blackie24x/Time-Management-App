@@ -34,11 +34,13 @@
     color: rgb(133, 133, 133);
     color: var(--text-color-light);
     margin-right: 6px;
+    cursor: pointer;
     // color: var(--secondary-color);
     display: flex;
     font-size: 14px;
     justify-content: center;
     align-items: center;
+    transition: 0.2s;
   }
   &__add {
     height: 32px;
@@ -46,7 +48,11 @@
     font-size: 18px;
     color: var(--text-color-light);
     color: var(--secondary-color);
-
+    transition: 0.1s;
+    &:hover {
+      font-size: 22px;
+    }
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,8 +61,13 @@
     height: 32px;
     width: 32px;
     font-size: 18px;
-    color: var(--text-color-extra-light);
+    transition: 0.1s;
 
+    &:hover {
+      font-size: 22px;
+    }
+    color: var(--text-color-extra-light);
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;

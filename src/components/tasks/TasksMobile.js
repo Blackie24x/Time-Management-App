@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Store } from "../../context/Context";
 import styles from "./tasks-mobile.module.scss";
+
 import AddSpace from "./AddSpace";
 import TasksSpace from "./TasksSpace";
-const TasksMobile = ({
-  addSpaceIsActive,
-  setAddSpaceIsActive,
-  setActiveSpaceIndex,
-  activeSpaceIndex,
-  activeSpace,
-  spaces,
-  setSpaces,
-  setActiveSpace,
-}) => {
+const TasksMobile = () => {
+  const context = useContext(Store);
+  console.log(context);
+  const {
+    activeSpace,
+    setActiveSpace,
+    spaces,
+    setSpaces,
+    setAddSpaceIsActive,
+    activeSpaceIndex,
+    setActiveSpaceIndex,
+  } = context;
   const renderSpaces = () => {
     const actualSpaces = spaces.map((space, i) => {
       return (

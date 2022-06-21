@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Store } from "../../context/Context";
 import styles from "./spaces.module.scss";
-const SpacesDesktop = ({
-  activeSpace,
-  setActiveSpace,
-  spaces,
-  setSpaces,
-  setAddSpaceIsActive,
-  activeSpaceIndex,
-  setActiveSpaceIndex,
-  screen,
-}) => {
+const SpacesDesktop = () => {
+  const context = useContext(Store);
+  console.log(context);
+  const {
+    activeSpace,
+    setActiveSpace,
+    spaces,
+    setSpaces,
+    addSpaceIsActive,
+    setAddSpaceIsActive,
+    activeSpaceIndex,
+    setActiveSpaceIndex,
+  } = context;
   const createSpaces = () => {
     const elements = [];
     for (let i = 0; i < 3; i++) {
@@ -27,6 +31,7 @@ const SpacesDesktop = ({
             spaces={spaces}
             setSpaces={setSpaces}
             setActiveSpace={setActiveSpace}
+            addSpaceIsActive={addSpaceIsActive}
             setAddSpaceIsActive={setAddSpaceIsActive}
             setActiveSpaceIndex={setActiveSpaceIndex}
           />
@@ -82,13 +87,18 @@ const Space = ({ space, setActiveSpace, setAddSpaceIsActive }) => {
     </div>
   );
 };
-const AddSpace = ({ setAddSpaceIsActive, spaces, setActiveSpace }) => {
+const AddSpace = ({
+  setAddSpaceIsActive,
+  addSpaceIsActive,
+  spaces,
+  setActiveSpace,
+}) => {
   return (
     <div
       className={`${styles["spaces__add-space"]}`}
       onClick={() => {
         setActiveSpace(null);
-        setAddSpaceIsActive(true);
+        setAddSpaceIsActive(!addSpaceIsActive);
       }}
     >
       <p className={styles.spaces__addSpaceName}>

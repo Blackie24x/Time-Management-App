@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./spaces.module.scss";
-const Spaces = ({
-  activeSpace,
-  setActiveSpace,
-  spaces,
-  setSpaces,
-  setAddSpaceIsActive,
-  activeSpaceIndex,
-  setActiveSpaceIndex,
-  screen,
-}) => {
+import { Store } from "../../context/Context";
+const Spaces = () => {
+  const context = useContext(Store);
+  console.log(context);
+  const {
+    activeSpace,
+    setActiveSpace,
+    spaces,
+    setSpaces,
+    setAddSpaceIsActive,
+    activeSpaceIndex,
+    setActiveSpaceIndex,
+  } = context;
+  console.log(context);
+  useEffect(() => {}, []);
   const createSpaces = () => {
     const elements = [];
     for (let i = 0; i < 3; i++) {

@@ -75,7 +75,7 @@ const AddSpace = ({
         <div className={styles.addSpace__colorWrap}>
           <div
             className={styles.addSpace__color}
-            style={{ background: color }}
+            style={{ background: color, color: color }}
             onClick={() => {
               setPickedColor(color);
             }}

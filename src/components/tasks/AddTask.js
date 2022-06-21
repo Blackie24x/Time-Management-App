@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import styles from "./add-task.module.scss";
 import { createTask } from "../../context/actions/TasksActions";
 import { Store } from "../../context/Context";
-const AddTask = ({ space, setIsAdding }) => {
+const AddTask = ({ space, setTaskIsAdding }) => {
   const context = useContext(Store);
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState(0);
@@ -19,8 +19,11 @@ const AddTask = ({ space, setIsAdding }) => {
         id: uuid(),
       };
       tasksDispatch(createTask(task));
-      setIsAdding(false);
+      setTaskIsAdding(false);
     }
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") addTask();
   };
   return (
     <div className={styles.addTask}>
@@ -28,6 +31,7 @@ const AddTask = ({ space, setIsAdding }) => {
         className={styles.addTask__writeName}
         placeholder="Task Name"
         type="text"
+        onKeyPress={(e) => handleKeyPress(e)}
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
       />
@@ -46,7 +50,7 @@ const AddTask = ({ space, setIsAdding }) => {
         </div>
         <div
           onClick={() => {
-            setIsAdding(false);
+            setTaskIsAdding(false);
           }}
           className={styles.addTask__exit}
         >

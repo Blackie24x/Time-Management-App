@@ -76,6 +76,7 @@
     margin-top: 16px;
     text-align: center;
     font-size: 16px;
+    color: var(--text-color-light);
   }
 
   &__completeTask {
@@ -114,7 +115,7 @@
   &__addTask {
     cursor: pointer;
     padding: 0 25px;
-    height: 40px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -132,6 +133,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    position: relative;
     padding: 0 15px 0 25px;
     height: 50px;
     box-shadow: 0px 0px 4px 0px rgb(230, 230, 230);
@@ -190,6 +192,12 @@
       opacity: 0;
     }
   }
+  &__taskTheme {
+    position: absolute;
+    left: 0;
+    width: 0px;
+    height: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -204,6 +212,10 @@
       width: 90%;
       border-radius: 6px;
       max-width: 600px;
+    }
+    &__taskTheme {
+      width: 6px;
+      border-radius: 6px 0 0 6px;
     }
     &__completeTask {
       width: 90%;
@@ -229,6 +241,7 @@
     }
     &__ToDo {
       padding: 0 5%;
+      gap: 25px;
     }
     &__complete {
       padding: 0 5%;
@@ -240,7 +253,8 @@
     &__anyComplete {
       margin-top: 20px;
       text-align: center;
-      font-size: 17px;
+      font-size: 16px;
+      color: var(--text-color-light);
     }
     // &__tasksArea {
     //   margin-top: 36px;

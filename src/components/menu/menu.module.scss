@@ -46,7 +46,7 @@
     position: fixed;
     left: 0;
     height: 100%;
-    width: 66px;
+    width: 60px;
 
     &__bar {
       height: 100%;
@@ -72,5 +72,11 @@
         margin-bottom: 100px;
       }
     }
+  }
+}
+
+@media (min-width: 1920px) {
+  .menu {
+    width: 66px;
   }
 }

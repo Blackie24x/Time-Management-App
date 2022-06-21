@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styles from "./tasks-space.module.scss";
 import { Store } from "../../context/Context";
-import { completeTask } from "../../context/actions/TasksActions";
+import { completeTask, deleteTask } from "../../context/actions/TasksActions";
 import AddTask from "./AddTask";
 const TasksSpace = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
   const [activeTasksFilter, setActiveTasksFilter] = useState("ToDo");
-  const [isAdding, setIsAdding] = useState(false);
   const ToDoRef = useRef(null);
   const completeRef = useRef(null);
   const tasksAreaRef = useRef(null);
@@ -13,6 +12,7 @@ const TasksSpace = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
     setActiveTasksFilter(action);
   };
   const context = useContext(Store);
+  const { taskIsAdding, setTaskIsAdding } = context;
   const createTasks = () => {
     if (context.tasksStore) {
       const { tasksStore, tasksDispatch } = context;
@@ -38,10 +38,19 @@ const TasksSpace = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
               >
                 <i className="fa-solid fa-flag"></i>
               </div>
-              <div className={styles.tasksSpace__delete}>
+              <div
+                className={styles.tasksSpace__delete}
+                onClick={() => {
+                  tasksDispatch(deleteTask(task.id));
+                }}
+              >
                 <i className="fa-solid fa-xmark"></i>
               </div>
             </div>
+            <div
+              style={{ background: task.theme }}
+              className={styles.tasksSpace__taskTheme}
+            ></div>
           </div>
         );
       });
@@ -130,11 +139,11 @@ const TasksSpace = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
           ref={ToDoRef}
         >
           {createTasks()}
-          {isAdding ? (
-            <AddTask space={activeSpace} setIsAdding={setIsAdding} />
+          {taskIsAdding ? (
+            <AddTask space={activeSpace} setTaskIsAdding={setTaskIsAdding} />
           ) : (
             <div className={styles.tasksSpace__addTask}>
-              <p className="extra-light" onClick={() => setIsAdding(true)}>
+              <p className="extra-light" onClick={() => setTaskIsAdding(true)}>
                 <i className="fa-solid fa-plus"></i> Add Task
               </p>
             </div>

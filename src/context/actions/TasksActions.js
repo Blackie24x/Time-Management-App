@@ -1,5 +1,5 @@
 import { ActionTypes } from "../ActionTypes";
-const { CREATE_TASK, COMPLETE_TASK } = ActionTypes;
+const { CREATE_TASK, COMPLETE_TASK, DELETE_TASK } = ActionTypes;
 export const createTask = (task) => {
   return {
     type: CREATE_TASK,
@@ -10,6 +10,12 @@ export const createTask = (task) => {
 export const completeTask = (id) => {
   return {
     type: COMPLETE_TASK,
+    payload: id,
+  };
+};
+export const deleteTask = (id) => {
+  return {
+    type: DELETE_TASK,
     payload: id,
   };
 };

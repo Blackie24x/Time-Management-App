@@ -1,5 +1,5 @@
 .addSpace {
-  padding: 50px 20px;
+  padding: 40px 20px;
   width: 100%;
   position: absolute;
   transition: 0.3s;
@@ -65,8 +65,13 @@
   &__color {
     border-radius: 50%;
     height: 26px;
+    cursor: pointer;
     width: 26px;
     box-shadow: 0px 0px 6px 0px rgb(221, 221, 221);
+    transition: 0.2s;
+    &:hover {
+      box-shadow: 0px 0px 6px 0px;
+    }
   }
   &__addBtn {
     display: flex;
@@ -88,8 +93,16 @@
   .addSpace {
     position: static;
     width: 30%;
+    &__spaceName {
+      width: 70%;
+    }
   }
 }
 
 @media (min-width: 1920px) {
+  .addSpace {
+    &__addBtn {
+      margin: 40px auto 0;
+    }
+  }
 }
