@@ -7,9 +7,10 @@ const AddTask = ({ space, setTaskIsAdding }) => {
   const context = useContext(Store);
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState(0);
+  const { tasksDispatch } = context;
+
   const addTask = () => {
     if (context && taskName) {
-      const { tasksDispatch } = context;
       const task = {
         name: taskName,
         priority,

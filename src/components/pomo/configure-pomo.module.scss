@@ -1,0 +1,111 @@
+.pomoConfig {
+  margin-bottom: 100px;
+  display: flex;
+  width: 100%;
+  margin: 0 auto 100px;
+  max-width: 720px;
+  align-items: center;
+  justify-content: center;
+  &__panel {
+    width: 80%;
+    height: auto;
+    padding-bottom: 36px;
+    // overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 4px 0 #eee;
+    border-radius: 4px;
+    // border-radius: 10px;
+    // overflow: hidden;
+
+    // background: #000;
+  }
+  &__header {
+    display: flex;
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    padding: 12px 0;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary-color);
+    h2 {
+      color: var(--primary-color);
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+  &__hideSettings {
+    position: absolute;
+    right: 25px;
+    cursor: pointer;
+    top: 50%;
+    font-size: 20px;
+    color: white;
+    opacity: 0.6;
+    transform: translateY(-50%);
+  }
+  &__settings {
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  &__settings > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 18px;
+    label {
+      display: flex;
+      p {
+      }
+    }
+  }
+  &__slider {
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(247, 247, 247);
+    background: var(--secondary-color-light);
+    background-color: rgb(241, 242, 255);
+
+    border-radius: 18px;
+    border: 1px solid var(--secondary-color-light);
+    width: 80%;
+  }
+  &__thumb {
+    background: var(--secondary-color);
+    // box-shadow: 0px 0px 4px rgb(151, 203, 255);
+    // background: linear-gradient(45deg, #7694ff, #1c44d4);
+    outline: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    // &:focus {
+    //   background: var(--secondary-color-dark);
+    // }
+  }
+}
+
+@media (min-width: 1200px) {
+  .pomoConfig {
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
+    transition: 0.4s;
+    &--active {
+      transform: translateX(0%);
+    }
+    width: 32vw;
+    max-width: 500px;
+    margin: 0;
+    &__panel {
+      box-shadow: 0px 0px 4px 0 #eee;
+      padding-bottom: 45px;
+    }
+  }
+}

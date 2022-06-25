@@ -1,0 +1,180 @@
+.timer {
+  margin-top: 40px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  &__timerBox {
+    width: 100%;
+    // margin-top: 20px;
+  }
+  &__percent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    & > svg {
+      position: relative;
+      display: block;
+      width: 260px;
+      height: 260px;
+      transform: rotate(-90deg) rotateX(-180deg);
+      circle {
+        fill: none;
+        height: 100%;
+        width: 100%;
+        stroke-width: 8;
+        transform: translate(4px, 4px);
+        stroke: #000;
+        // stroke-dasharray: 800;
+        // stroke-dashoffset: 800;
+        stroke-linecap: round;
+        &:nth-child(1) {
+          // stroke-dashoffset: 0;
+          stroke: var(--secondary-color);
+          stroke: #f3f3f3;
+        }
+        &:nth-child(2) {
+          // stroke-dashoffset: calc(800 - (800 * 69) / 100);
+          stroke: var(--secondary-color);
+          // stroke: #f3f3f3;
+          transition: 0.7s;
+        }
+      }
+    }
+  }
+  &__time {
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 42px;
+    transition: 0.4s;
+
+    top: 50%;
+    transform: translate(-50%, -50%);
+    svg {
+      font-size: 110px;
+      color: var(--theme-color-green);
+    }
+  }
+
+  &__handleTimerWrap {
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    gap: 30px;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      height: 60px;
+      background: var(--secondary-color-light);
+      border-radius: 50%;
+      color: var(--secondary-color);
+      width: 60px;
+    }
+    svg {
+      font-size: 20px;
+    }
+  }
+  &__pomos {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 50px;
+    font-size: 26px;
+    color: #f3f3f3;
+    // color: #ff7373;
+  }
+}
+
+@media (min-width: 768px) {
+  .timer {
+    &__percent {
+      & > svg {
+        width: 290px;
+        height: 290px;
+      }
+    }
+    &__time {
+      font-size: 46px;
+    }
+    &__pomos {
+      gap: 20px;
+      font-size: 28px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .timer {
+    flex-grow: 1;
+    &__percent {
+      & > svg {
+        width: 350px;
+        height: 350px;
+      }
+    }
+    &__time {
+      font-size: 52px;
+      svg {
+        font-size: 130px;
+      }
+    }
+    &__handleTimerWrap {
+      margin-top: 55px;
+      gap: 40px;
+      button {
+        width: 60px;
+        height: 60px;
+        svg {
+          font-size: 22px;
+        }
+      }
+    }
+    &__pomos {
+      gap: 22px;
+      font-size: 30px;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media (min-width: 1920px) {
+  .timer {
+    &__percent {
+      & > svg {
+        width: 440px;
+        height: 440px;
+      }
+    }
+    &__time {
+      font-size: 60px;
+      svg {
+        font-size: 150px;
+      }
+    }
+    &__handleTimerWrap {
+      margin-top: 75px;
+      gap: 50px;
+      button {
+        width: 75px;
+        height: 75px;
+        svg {
+          font-size: 25px;
+        }
+      }
+    }
+    &__pomos {
+      font-size: 34px;
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+  }
+}

@@ -8,7 +8,7 @@ const Menu = () => {
         <nav className={styles.menu__content}>
           <li>
             <NavLink
-              to="home"
+              to="/"
               className={({ isActive }) =>
                 isActive
                   ? styles["menu__icon-wrap--active"]

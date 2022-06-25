@@ -7,6 +7,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import Tasks from "./components/tasks/Tasks";
+import Pomo from "./components/pomo/Pomo";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/pomo" element={<Pomo />} />
         </Routes>
 
         <Menu />

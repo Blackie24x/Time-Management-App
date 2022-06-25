@@ -17,7 +17,7 @@ const Tasks = () => {
   return (
     <section className={styles.tasks}>
       <div className={styles.tasks__header}>
-        <h4>Tasks</h4>
+        <h1 className="header">Tasks</h1>
       </div>
       <Media
         queries={{

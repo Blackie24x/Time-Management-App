@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styles from "./tasks-space.module.scss";
 import { Store } from "../../context/Context";
-import { completeTask, deleteTask } from "../../context/actions/TasksActions";
+import {
+  completeTask,
+  deleteTask,
+  restoreTask,
+} from "../../context/actions/TasksActions";
 import AddTask from "./AddTask";
-const TasksSpaceDesktop = ({
-  activeSpace,
-  taskIsAdding,
-  setTaskIsAdding,
-  activeSpaceIndex,
-  spaceIndex,
-}) => {
+import Task from "./Task";
+import CompletedTask from "./CompletedTask";
+const TasksSpaceDesktop = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
   const [activeTasksFilter, setActiveTasksFilter] = useState("ToDo");
   const ToDoRef = useRef(null);
   const completeRef = useRef(null);
@@ -17,7 +17,11 @@ const TasksSpaceDesktop = ({
   const changeFilter = (action) => {
     setActiveTasksFilter(action);
   };
+  const [taskIsAdding, setTaskIsAdding] = useState(false);
+
   const context = useContext(Store);
+  const { tasksStore, tasksDispatch } = context;
+
   useEffect(() => {
     tasksAreaRef.current.style.height = `${
       ToDoRef.current.clientHeight >= completeRef.current.clientHeight
@@ -28,72 +32,20 @@ const TasksSpaceDesktop = ({
   }, [context]);
 
   const createTasks = () => {
-    if (context.tasksStore) {
-      const { tasksStore, tasksDispatch } = context;
+    if (tasksStore) {
       const spaceTasks = tasksStore.filter(
         (task) => task.space === activeSpace.name && !task.complete
       );
-      return spaceTasks.map((task) => {
-        return (
-          <div className={styles.tasksSpace__task}>
-            <div
-              className={styles.tasksSpace__doneCheck}
-              onClick={() => {
-                tasksDispatch(completeTask(task.id));
-              }}
-            >
-              <i className="fa-solid fa-check"></i>
-            </div>
-            <p className={styles.tasksSpace__taskName}>{task.name}</p>
-            <div className={styles.tasksSpace__options}>
-              <div
-                style={{ color: task.priority ? "#5f81ff" : "" }}
-                className={styles.tasksSpace__iconWrap}
-              >
-                <i className="fa-solid fa-flag"></i>
-              </div>
-              <div
-                className={styles.tasksSpace__delete}
-                onClick={() => {
-                  tasksDispatch(deleteTask(task.id));
-                }}
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </div>
-            </div>
-            <div
-              style={{ background: task.theme }}
-              className={styles.tasksSpace__taskTheme}
-            ></div>
-          </div>
-        );
-      });
+      return spaceTasks.map((task) => <Task task={task} />);
     }
   };
   const showCompleteTasks = () => {
-    if (context.tasksStore) {
-      const completeTasks = context.tasksStore.filter(
+    if (tasksStore) {
+      const completeTasks = tasksStore.filter(
         (task) => task.complete && task.space === activeSpace.name
       );
       return completeTasks.length ? (
-        completeTasks.map((task) => {
-          return (
-            <div className={styles.tasksSpace__completeTask}>
-              <div className={styles.tasksSpace__doneIcon}>
-                <i className="fa-solid fa-check"></i>
-              </div>
-              <div className={styles.tasksSpace__completeName}>{task.name}</div>
-              <div className={styles.tasksSpace__options}>
-                <div className={styles.tasksSpace__restore}>
-                  <i className="fa-solid fa-rotate-left"></i>
-                </div>
-                <div className={styles.tasksSpace__delete}>
-                  <i className="fa-solid fa-xmark"></i>
-                </div>
-              </div>
-            </div>
-          );
-        })
+        completeTasks.map((task) => <CompletedTask task={task} />)
       ) : (
         <p className={styles.tasksSpace__anyComplete}>No complete tasks!</p>
       );

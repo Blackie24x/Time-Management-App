@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { Store } from "../../context/Context";
 import styles from "./tasks-mobile.module.scss";
 
@@ -7,6 +7,9 @@ import TasksSpace from "./TasksSpace";
 const TasksMobile = () => {
   const context = useContext(Store);
   console.log(context);
+  let spacesHeight = 0;
+  let spacesHeightRef = useRef(spacesHeight);
+  const switchRef = useRef(null);
   const {
     activeSpace,
     setActiveSpace,
@@ -15,11 +18,17 @@ const TasksMobile = () => {
     setAddSpaceIsActive,
     activeSpaceIndex,
     setActiveSpaceIndex,
+    // spacesHeight,
+    // setSpacesHeight,
   } = context;
+  useEffect(() => {
+    switchRef.current.style.height = `${spacesHeightRef.current}px`;
+  }, [spacesHeightRef.current]);
   const renderSpaces = () => {
     const actualSpaces = spaces.map((space, i) => {
       return (
         <TasksSpace
+          spacesHeightRef={spacesHeightRef}
           spaceIndex={i}
           activeSpaceIndex={activeSpaceIndex}
           activeSpace={space}
@@ -42,7 +51,7 @@ const TasksMobile = () => {
   };
 
   return (
-    <div className={styles.tasksMobile__switchWrap}>
+    <div className={styles.tasksMobile__switchWrap} ref={switchRef}>
       {spaces.length ? (
         renderSpaces()
       ) : (

@@ -8,10 +8,12 @@
   --text-color-light: #7c828d;
   --text-color-extra-light: #bebebe;
 
-  --h1-font: 1.75rem;
-  --h2-font: 1.5rem;
-  --h3-font: 1.375rem;
-  --h4-font: 1.25rem;
+  --h1-header-font: 1.25rem;
+  --h2-header-font: 1.125rem;
+  // --h1-font: 1.75rem;
+  // --h2-font: 1.5rem;
+  // --h3-font: 1.375rem;
+  // --h4-font: 1.25rem;
   --p-bigger-font: 1.125rem;
   --p-font: 1rem;
   --p-smaller-font: 0.875rem;
@@ -19,9 +21,20 @@
 
 @media (min-width: 1200px) {
   :root {
-    --h1-font: 2rem;
-    --h2-font: 1.75rem;
-    --h3-font: 1.5rem;
-    --h4-font: 1.375rem;
+    --h1-header-font: 1.375rem;
+    --h2-header-font: 1.25rem;
+    // --h2-font: 1.75rem;
+    // --h3-font: 1.5rem;
+    // --h4-font: 1.375rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --h1-header-font: 1.5rem;
+    --h2-header-font: 1.375rem;
+    // --h2-font: 1.75rem;
+    // --h3-font: 1.5rem;
+    // --h4-font: 1.375rem;
   }
 }
