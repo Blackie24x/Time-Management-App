@@ -4,9 +4,11 @@ import styles from "./tasks-desktop.module.scss";
 import TasksSpaceDesktop from "./TasksSpaceDesktop";
 import AddSpace from "./AddSpace";
 import AddSpaceDesktop from "./AddSpaceDesktop";
+import uuid from "react-uuid";
+import SpaceDelete from "./SpaceDelete";
+
 const TasksDesktop = () => {
   const context = useContext(Store);
-  console.log(context);
   const {
     activeSpace,
     setActiveSpace,
@@ -18,11 +20,17 @@ const TasksDesktop = () => {
     taskIsAdding,
     setTaskIsAdding,
     setActiveSpaceIndex,
+    setDeletedSpaceIndex,
+    deletedSpaceIndex,
+    deletedSpace,
   } = context;
   const renderSpaces = () => {
     const actualSpaces = spaces.map((space, i) => {
-      return (
+      return deletedSpace !== null && deletedSpace === space ? (
+        <SpaceDelete />
+      ) : (
         <TasksSpaceDesktop
+          key={uuid()}
           spaceIndex={i}
           activeSpaceIndex={activeSpaceIndex}
           taskIsAdding={taskIsAdding}
@@ -34,6 +42,7 @@ const TasksDesktop = () => {
     if (spaces.length < 3) {
       actualSpaces.push(
         <AddSpaceDesktop
+          key={uuid()}
           spaceIndex={spaces.length}
           activeSpaceIndex={activeSpaceIndex}
           addSpaceIsActive={addSpaceIsActive}

@@ -56,7 +56,7 @@ const Pomo = () => {
                   {matches.smallMobile && <PomoTimer circleSize={125} />}
                   {matches.bigMobile && <PomoTimer circleSize={140} />}
                   {matches.desktop && <PomoTimer circleSize={170} />}
-                  {matches.bigDesktop && <PomoTimer circleSize={215} />}
+                  {matches.bigDesktop && <PomoTimer circleSize={200} />}
                 </>
               );
             }}

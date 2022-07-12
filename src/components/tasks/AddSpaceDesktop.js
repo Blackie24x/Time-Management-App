@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./add-space.module.scss";
+import axios from "axios";
+import { Store } from "../../context/Context";
 const colors = [
   "#F08080",
   "#DC143C",
@@ -36,23 +38,51 @@ const colors = [
   "#B0C4DE",
 ];
 
-const AddSpaceDesktop = ({
-  setSpaces,
-  spaces,
-  addSpaceIsActive,
-  setAddSpaceIsActive,
-  setActiveSpace,
-  activeSpaceIndex,
-  spaceIndex,
-}) => {
+const AddSpaceDesktop = () => {
+  const { userId } = useContext(Store);
   const [pickedColor, setPickedColor] = useState("");
   const [pickedName, setPickedName] = useState("");
-  const addNewSpace = () => {
+  const {
+    setSpaces,
+    spaces,
+    addSpaceIsActive,
+    setAddSpaceIsActive,
+    setActiveSpace,
+
+    setAlertText,
+    setIsAlert,
+  } = useContext(Store);
+  const showAlert = (text) => {
+    setAlertText(text);
+    setTimeout(() => {
+      setIsAlert(true);
+    }, 200);
+
+    setTimeout(() => {
+      setIsAlert(false);
+    }, 3500);
+  };
+
+  const addNewSpace = async () => {
     if (pickedColor && pickedName) {
-      const space = { name: pickedName, theme: pickedColor };
-      setSpaces(spaces.length ? [...spaces, space] : [space]);
-      setAddSpaceIsActive(false);
-      setActiveSpace(space);
+      const space = { name: pickedName, theme: pickedColor, userId: userId };
+      const spaceNameExist = spaces.some((space) => space.name === pickedName);
+
+      if (!spaceNameExist) {
+        try {
+          const res = await axios.post("http://localhost:5000/api/spaces", {
+            theme: pickedColor,
+            name: pickedName,
+            userId,
+          });
+          console.log(res);
+        } catch {}
+        setSpaces(spaces.length ? [...spaces, space] : [space]);
+        setAddSpaceIsActive(false);
+        setActiveSpace(space);
+      } else {
+        showAlert("Space with same name already exist");
+      }
     }
   };
 
@@ -71,7 +101,6 @@ const AddSpaceDesktop = ({
       );
     });
   };
-  console.log(addSpaceIsActive);
   return (
     <section
       className={styles.addSpace}

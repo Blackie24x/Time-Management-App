@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./spaces.module.scss";
 import { Store } from "../../context/Context";
+import uuid from "react-uuid";
+
 const Spaces = () => {
   const context = useContext(Store);
-  console.log(context);
   const {
     activeSpace,
     setActiveSpace,
@@ -12,9 +13,10 @@ const Spaces = () => {
     setAddSpaceIsActive,
     activeSpaceIndex,
     setActiveSpaceIndex,
+    setDeletedSpace,
+    deletedSpace,
   } = context;
-  console.log(context);
-  useEffect(() => {}, []);
+
   const createSpaces = () => {
     const elements = [];
     for (let i = 0; i < 3; i++) {
@@ -24,15 +26,19 @@ const Spaces = () => {
         const isActive = spaceIndex === activeSpaceIndex;
         elements.push(
           <Space
+            key={uuid()}
             isActive={isActive}
             space={spaces[i]}
             setActiveSpace={setActiveSpace}
             setAddSpaceIsActive={setAddSpaceIsActive}
+            setDeletedSpace={setDeletedSpace}
+            deletedSpace={deletedSpace}
           />
         );
       } else {
         elements.push(
           <AddSpace
+            key={uuid()}
             spaces={spaces}
             setSpaces={setSpaces}
             setActiveSpace={setActiveSpace}
@@ -72,13 +78,22 @@ const Spaces = () => {
   );
 };
 
-const Space = ({ space, isActive, setActiveSpace, setAddSpaceIsActive }) => {
+const Space = ({
+  space,
+  isActive,
+  setActiveSpace,
+  setAddSpaceIsActive,
+  setDeletedSpace,
+  deletedSpace,
+}) => {
   return (
     <div
       className={styles.spaces__space}
       onClick={() => {
+        console.log(deletedSpace);
         setActiveSpace(space);
         setAddSpaceIsActive(false);
+        if (deletedSpace !== null) setDeletedSpace(null);
       }}
     >
       <p

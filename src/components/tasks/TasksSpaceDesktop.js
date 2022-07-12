@@ -28,7 +28,6 @@ const TasksSpaceDesktop = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
         ? ToDoRef.current.clientHeight + 100
         : completeRef.current.clientHeight + 100
     }px`;
-    console.log(tasksAreaRef.current.style.height);
   }, [context]);
 
   const createTasks = () => {

@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Store } from "../../context/Context";
 import styles from "./tasks-mobile.module.scss";
+import uuid from "react-uuid";
 
 import AddSpace from "./AddSpace";
 import TasksSpace from "./TasksSpace";
+import SpaceDelete from "./SpaceDelete";
 const TasksMobile = () => {
   const context = useContext(Store);
-  console.log(context);
   let spacesHeight = 0;
   let spacesHeightRef = useRef(spacesHeight);
   const switchRef = useRef(null);
@@ -20,32 +21,38 @@ const TasksMobile = () => {
     setActiveSpaceIndex,
     // spacesHeight,
     // setSpacesHeight,
+    deletedSpace,
+    setDeletedSpace,
   } = context;
   useEffect(() => {
     switchRef.current.style.height = `${spacesHeightRef.current}px`;
   }, [spacesHeightRef.current]);
   const renderSpaces = () => {
     const actualSpaces = spaces.map((space, i) => {
-      return (
+      console.log(deletedSpace === activeSpace);
+      return deletedSpace !== null && deletedSpace === activeSpace ? (
+        <SpaceDelete />
+      ) : (
         <TasksSpace
+          key={uuid()}
           spacesHeightRef={spacesHeightRef}
           spaceIndex={i}
           activeSpaceIndex={activeSpaceIndex}
           activeSpace={space}
         />
       );
+      // return (
+      //   <TasksSpace
+      //     key={uuid()}
+      //     spacesHeightRef={spacesHeightRef}
+      //     spaceIndex={i}
+      //     activeSpaceIndex={activeSpaceIndex}
+      //     activeSpace={space}
+      //   />
+      // );
     });
     if (spaces.length < 3) {
-      actualSpaces.push(
-        <AddSpace
-          spaceIndex={spaces.length}
-          activeSpaceIndex={activeSpaceIndex}
-          setAddSpaceIsActive={setAddSpaceIsActive}
-          setActiveSpace={setActiveSpace}
-          spaces={spaces}
-          setSpaces={setSpaces}
-        />
-      );
+      actualSpaces.push(<AddSpace key={uuid()} spaceIndex={spaces.length} />);
     }
     return actualSpaces;
   };
@@ -56,6 +63,7 @@ const TasksMobile = () => {
         renderSpaces()
       ) : (
         <AddSpace
+          key={uuid()}
           setAddSpaceIsActive={setAddSpaceIsActive}
           setActiveSpace={setActiveSpace}
           spaces={spaces}

@@ -1,0 +1,183 @@
+.auth {
+  padding-bottom: 50px;
+  width: 100%;
+  &__container {
+    margin-top: 15px;
+  }
+  &__imageSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__imageWrap {
+    max-width: 80%;
+    width: 400px;
+  }
+  &__appDesc {
+    gap: 15px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__desc {
+    color: var(--text-color-light);
+    // color: var(--secondary-color);
+
+    // font-weight: 500;
+    font-size: 15px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    span {
+      //   font-size: 6px;
+      color: var(--secondary-color);
+      //   color: var(--text-color-light);
+    }
+  }
+  &__authSide {
+    margin-top: 50px;
+
+    button {
+      padding: 6px;
+      font-size: 15px;
+      width: 75%;
+      max-width: 360px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+  }
+  &__btn {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+  &__isSubmit {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+  }
+  // &__signUpBtn {
+  //   background: var(--secondary-color);
+  //   color: var(--primary-color);
+  //   border: 1px solid var(--secondary-color);
+  // }
+  // &__logInBtn {
+  //   background: var(--primary-color);
+  //   color: var(--secondary-color);
+  //   border: 1px solid var(--secondary-color);
+  // }
+}
+
+@media (min-width: 1200px) {
+  .auth {
+    &__container {
+      margin-top: 0;
+      width: 100%;
+      display: flex;
+      padding-top: 16vh;
+      justify-content: center;
+    }
+    &__imageSide {
+      margin-top: 30px;
+      width: 50%;
+      max-width: 660px;
+      // padding-left: 50px;
+      //   align-items: flex-end;
+    }
+    &__authSide {
+      margin-top: 0;
+      width: 50%;
+      display: flex;
+      max-width: 660px;
+
+      &__btn {
+        &:hover {
+          // background: var(--secondary-color-light);
+
+          // border: 1px solid var(--secondary-color-light);
+        }
+      }
+      &__isSubmit {
+        &:hover {
+          // background: var(--secondary-color-dark);
+          width: 90%;
+          max-width: 400px;
+
+          // border: 1px solid var(--secondary-color-dark);
+        }
+      }
+    }
+    &__imageWrap {
+      max-width: 80%;
+      width: 460px;
+    }
+    &__appDesc {
+      gap: 18px;
+    }
+    h3 {
+      font-size: 1.3rem;
+    }
+    &__desc {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (min-width: 1920px) {
+  .auth {
+    &__container {
+      padding-top: 18vh;
+    }
+    &__imageSide {
+      margin-top: 30px;
+      width: 50%;
+      max-width: 660px;
+      // padding-left: 50px;
+      //   align-items: flex-end;
+    }
+    &__authSide {
+      margin-top: 0;
+      width: 50%;
+      display: flex;
+      max-width: 660px;
+      button {
+        padding: 8px;
+        max-width: 280px;
+        font-size: 16px;
+      }
+    }
+    &__imageWrap {
+      max-width: 80%;
+      width: 520px;
+    }
+    &__appDesc {
+      gap: 22px;
+    }
+    h3 {
+      font-size: 1.45rem;
+    }
+    &__desc {
+      font-size: 18px;
+    }
+    &__btn {
+      // background: var(--secondary-color-light);
+      &:hover {
+        // background: var(--secondary-color-dark);
+        // width: 90%;
+        max-width: 320px;
+
+        // border: 1px solid var(--secondary-color-dark);
+      }
+      // border: 1px solid var(--secondary-color-light);
+    }
+    &__isSubmit {
+    }
+  }
+}

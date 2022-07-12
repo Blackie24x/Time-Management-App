@@ -2,7 +2,8 @@
   display: flex;
   position: absolute;
   width: 100%;
-  // left: -100%;
+  left: -100%;
+
   overflow: hidden;
   transition: 0.3s;
   flex-direction: column;
@@ -48,7 +49,6 @@
     margin-top: 40px;
     // height: 60vh;
     width: 100%;
-    // overflow: hidden;
     position: relative;
     // background: rgb(251, 251, 251);
     // background: #f4f7ff;
@@ -57,6 +57,7 @@
     width: 100%;
     left: 0%;
     position: absolute;
+    // max-height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,8 +192,9 @@
     justify-content: center;
     font-size: 12px;
     border-radius: 3px;
+    transition: 0.2s;
     border: 1px solid var(--secondary-color);
-    &:hover {
+    &.complete {
       background: var(--secondary-color);
     }
   }

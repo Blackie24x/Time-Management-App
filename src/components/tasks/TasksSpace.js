@@ -10,7 +10,6 @@ import CompletedTask from "./CompletedTask";
 //   restoreTask,
 // } from "../../context/actions/TasksActions";
 import AddTask from "./AddTask";
-import { CSSTransition } from "react-transition-group";
 
 const TasksSpace = ({
   activeSpace,
@@ -18,6 +17,7 @@ const TasksSpace = ({
   spaceIndex,
   spacesHeightRef,
 }) => {
+  console.log("rerender");
   const [activeTasksFilter, setActiveTasksFilter] = useState("ToDo");
   const ToDoRef = useRef(null);
   const completeRef = useRef(null);
@@ -45,7 +45,12 @@ const TasksSpace = ({
         (task) => task.complete && task.space === activeSpace.name
       );
       return completeTasks.length ? (
-        completeTasks.map((task) => <CompletedTask task={task} />)
+        completeTasks.map((task) => (
+          <CompletedTask
+            task={task}
+            setActiveTasksFilter={setActiveTasksFilter}
+          />
+        ))
       ) : (
         <p className={styles.tasksSpace__anyComplete}>No complete tasks!</p>
       );
@@ -57,7 +62,6 @@ const TasksSpace = ({
         ? ToDoRef.current.clientHeight + 50
         : completeRef.current.clientHeight + 50
     }px`;
-    console.log(tasksAreaRef.current.style.height);
   }, [context]);
   const countLeftStyle = () => {
     switch (activeSpaceIndex) {
@@ -76,13 +80,11 @@ const TasksSpace = ({
   };
   useEffect(() => {
     spacesHeightRef.current = tasksSpaceRef.current.clientHeight;
-
-    console.log(spacesHeightRef.current);
   });
   return (
     <div
       ref={tasksSpaceRef}
-      style={{ left: `${countLeftStyle()}%` }}
+      style={{ left: `${countLeftStyle()}%`, transition: "0.3s" }}
       className={styles.tasksSpace}
     >
       <div className={styles.tasksSpace__tasksFilterWrap}>

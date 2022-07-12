@@ -97,8 +97,10 @@
     right: 0;
     transform: translateX(100%);
     transition: 0.4s;
+    opacity: 0;
     &--active {
       transform: translateX(0%);
+      opacity: 1;
     }
     width: 32vw;
     max-width: 500px;

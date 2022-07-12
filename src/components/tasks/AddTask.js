@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import styles from "./add-task.module.scss";
 import { createTask } from "../../context/actions/TasksActions";
 import { Store } from "../../context/Context";
+import axios from "axios";
 const AddTask = ({ space, setTaskIsAdding }) => {
   const context = useContext(Store);
   const [taskName, setTaskName] = useState("");
@@ -19,6 +20,15 @@ const AddTask = ({ space, setTaskIsAdding }) => {
         complete: false,
         id: uuid(),
       };
+      axios.post("http://localhost:5000/api/tasks", {
+        name: taskName,
+        priority,
+        space: space.name,
+        theme: space.theme,
+        complete: false,
+        id: uuid(),
+        userId: context.userId,
+      });
       tasksDispatch(createTask(task));
       setTaskIsAdding(false);
     }

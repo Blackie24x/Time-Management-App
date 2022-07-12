@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Store } from "../../context/Context";
 import styles from "./spaces.module.scss";
+import uuid from "react-uuid";
 const SpacesDesktop = () => {
   const context = useContext(Store);
-  console.log(context);
   const {
     activeSpace,
     setActiveSpace,
@@ -20,6 +20,7 @@ const SpacesDesktop = () => {
       if (spaces[i])
         elements.push(
           <Space
+            key={uuid()}
             space={spaces[i]}
             setActiveSpace={setActiveSpace}
             setAddSpaceIsActive={setAddSpaceIsActive}
@@ -28,6 +29,7 @@ const SpacesDesktop = () => {
       else {
         elements.push(
           <AddSpace
+            key={uuid()}
             spaces={spaces}
             setSpaces={setSpaces}
             setActiveSpace={setActiveSpace}

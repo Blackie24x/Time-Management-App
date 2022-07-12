@@ -2,6 +2,8 @@ import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { Store } from "../../context/Context";
 import styles from "./timer.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import uuid from "react-uuid";
+
 const PomoTimer = ({ circleSize }) => {
   const circlePI = circleSize * 2 * 3.14;
   const {
@@ -37,6 +39,7 @@ const PomoTimer = ({ circleSize }) => {
     for (let i = 0; i < pomos; i++) {
       pomosElements.push(
         <FontAwesomeIcon
+          key={uuid()}
           style={{ color: donePomos > i ? "#ff7373" : "" }}
           icon="fa-solid fa-stopwatch"
         />
@@ -74,7 +77,6 @@ const PomoTimer = ({ circleSize }) => {
         remainingBreakRef--;
         setRemainingBreak((remainingBreak) => remainingBreak - 1);
       } else {
-        console.log("gigachad");
         setRemainingBreak(0);
         // setIsPaused(true);
         setPomoMode("pomo");
@@ -136,7 +138,12 @@ const PomoTimer = ({ circleSize }) => {
               r={`${circleSize}`}
             ></circle>
           </svg>
-          <p ref={insidePomoRef} className={styles.timer__time}>
+          <p
+            ref={insidePomoRef}
+            className={`${styles.timer__time} ${
+              pomoMode === "break" && styles["timer__time--break"]
+            }`}
+          >
             {pomos === donePomos ? (
               <FontAwesomeIcon icon="fa-solid fa-check"></FontAwesomeIcon>
             ) : (

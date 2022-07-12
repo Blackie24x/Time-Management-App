@@ -1,11 +1,19 @@
 import { ActionTypes } from "../ActionTypes";
 const {
+  GET_TASKS,
   CREATE_TASK,
   COMPLETE_TASK,
   DELETE_TASK,
   RESTORE_TASK,
   PRIORITIZE_TASK,
 } = ActionTypes;
+
+export const getTasks = (tasks) => {
+  return {
+    type: GET_TASKS,
+    payload: tasks,
+  };
+};
 export const createTask = (task) => {
   return {
     type: CREATE_TASK,

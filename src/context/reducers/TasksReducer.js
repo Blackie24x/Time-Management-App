@@ -1,5 +1,6 @@
 import { ActionTypes } from "../ActionTypes";
 const {
+  GET_TASKS,
   CREATE_TASK,
   COMPLETE_TASK,
   DELETE_TASK,
@@ -9,6 +10,10 @@ const {
 
 export const tasksReducer = (state = [], action) => {
   switch (action.type) {
+    case GET_TASKS: {
+      const tasks = action.payload;
+      return tasks;
+    }
     case CREATE_TASK: {
       const task = action.payload;
       if (task.priority) return [task, ...state];

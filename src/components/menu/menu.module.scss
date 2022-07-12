@@ -20,10 +20,17 @@
   }
   &__icon-wrap {
     color: var(--text-color-extra-light);
+    transition: 0.2s;
+    border-radius: 6px;
+
     &--active {
       background: var(--secondary-color);
       border-radius: 6px;
       color: white;
+    }
+    &:hover {
+      background: rgb(248, 250, 255);
+      color: rgb(152, 169, 255);
     }
   }
   a {
