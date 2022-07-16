@@ -1,6 +1,6 @@
 .tasks {
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   &__heading {
     margin: 25px auto 32px;
     width: fit-content;
@@ -79,6 +79,8 @@
       a {
         font-size: 100px;
         position: relative;
+        color: rgb(234, 241, 255);
+
         div {
           font-size: 100px;
         }

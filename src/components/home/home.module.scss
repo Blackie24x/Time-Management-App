@@ -33,7 +33,7 @@
   .home {
     &__tasksAndStatsWrap {
       background: rgb(251, 252, 255);
-      margin-top: 40px;
+      margin: 40px 0 30px;
       padding: 0px 100px;
       flex-direction: row;
     }
@@ -47,6 +47,7 @@
     }
     &__tasksAndStatsWrap {
       padding: 0px 100px;
+      margin: 50px 0;
     }
   }
 }
