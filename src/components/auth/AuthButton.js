@@ -39,7 +39,7 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
     const password = passwordRef.current.value;
     if (name && email && password) {
       try {
-        await axios.post(process.env.REACT_APP_BACKEND_URL + "users/signup", {
+        await axios.post(process.env.REACT_APP_BACKEND_URL + "/users/signup", {
           name,
           email,
           password,

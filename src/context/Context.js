@@ -15,10 +15,10 @@ const Context = ({ children }) => {
   const [spacesHeight, setSpacesHeight] = useState(0);
 
   const [pomoMode, setPomoMode] = useState("configure");
-  const [pomoTime, setPomoTime] = useState(0.1 * 60);
-  const [breakTime, setBreakTime] = useState(0.1 * 60);
-  const [remainingTime, setRemainingTime] = useState(0.1 * 60);
-  const [remainingBreak, setRemainingBreak] = useState(0.1 * 60);
+  const [pomoTime, setPomoTime] = useState(1 * 60);
+  const [breakTime, setBreakTime] = useState(1 * 60);
+  const [remainingTime, setRemainingTime] = useState(1 * 60);
+  const [remainingBreak, setRemainingBreak] = useState(1 * 60);
 
   const [pomos, setPomos] = useState(4);
   const [donePomos, setDonePomos] = useState(0);
