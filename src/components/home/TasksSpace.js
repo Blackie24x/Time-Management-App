@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Store } from "../../context/Context";
 import Task from "./Task";
 import styles from "./tasks-space.module.scss";
@@ -24,7 +26,17 @@ const TasksSpace = () => {
         {toDoTasks.length ? (
           <div className={styles.tasks__tasksSpace}>{renderTasks()}</div>
         ) : (
-          <p className={styles.tasks__alert}>All tasks done!</p>
+          <div className={styles.tasks__addPanel}>
+            {" "}
+            <p className={styles.tasks__alert}>Add Task!</p>
+            <Link to="/tasks">
+              <div>
+                {" "}
+                <FontAwesomeIcon icon="fa-solid fa-plus" />
+              </div>
+              <FontAwesomeIcon icon="fa-solid fa-plus" />
+            </Link>
+          </div>
         )}
       </section>
     </>

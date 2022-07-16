@@ -126,6 +126,13 @@
     &__noteTitle {
       font-size: 19px;
     }
+    &__iconWrap {
+      font-size: 66px;
+    }
+    &__label {
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
   }
 }
 
@@ -145,10 +152,7 @@
     &__iconWrap {
       font-size: 72px;
     }
-    &__label {
-      margin-bottom: 20px;
-      font-size: 15px;
-    }
+
     &__noteArea {
       max-width: 220px;
       max-height: 220px;

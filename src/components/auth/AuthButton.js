@@ -39,14 +39,11 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
     const password = passwordRef.current.value;
     if (name && email && password) {
       try {
-        const res = await axios.post(
-          process.env.REACT_APP_BACKEND_URL + "users/signup",
-          {
-            name,
-            email,
-            password,
-          }
-        );
+        await axios.post(process.env.REACT_APP_BACKEND_URL + "users/signup", {
+          name,
+          email,
+          password,
+        });
         showAlert("Signing Up succedd!");
         setLoading(false);
         setAuthMode("log in");

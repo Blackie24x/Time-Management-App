@@ -34,6 +34,7 @@ const Task = ({ task }) => {
     }, 200);
     setTimeout(() => {
       tasksDispatch(completeTask(task.id));
+      completeBtnRef.current.style.background = ``;
       taskRef.current.classList.remove("complete-task");
       statsOnComplete();
     }, 700);

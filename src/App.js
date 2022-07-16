@@ -16,9 +16,7 @@ const Notes = lazy(() => import("./components/notes/Notes"));
 function App() {
   const { isLoggedIn, activeSpace, spaces, setActiveSpace } = useContext(Store);
   useEffect(() => {
-    console.log(activeSpace, spaces.length);
     if (spaces.length && !activeSpace) {
-      console.log(spaces);
       setActiveSpace(spaces[0]);
     }
   }, [isLoggedIn]);

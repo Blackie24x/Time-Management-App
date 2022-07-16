@@ -27,9 +27,10 @@
     text-align: center;
     height: 100%;
     // color: rgb(90, 90, 90);
+    color: #5a5a5a;
     text-decoration: none;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
   }
   &__label {
     width: 100%;
@@ -115,25 +116,37 @@
       width: 150px;
     }
     a {
-      font-size: 18px;
+      font-size: 17px;
+    }
+    &__label {
+      margin-bottom: 14px;
     }
   }
 }
 
 @media (min-width: 1200px) {
   .notes {
+    margin-top: 16px;
     gap: 26px;
     &__heading {
       font-size: 21px;
       padding: 0 10px 14px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
     &__noteWrap {
-      height: 160px;
-      width: 160px;
+      height: 180px;
+      width: 180px;
     }
     &__notesWrap {
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 80px;
+    }
+    &__iconWrap {
+      font-size: 60px;
+    }
+    &__label {
+      margin-bottom: 16px;
+      font-size: 14px;
     }
   }
 }
@@ -141,18 +154,15 @@
 @media (min-width: 1600px) {
   .notes {
     &__notesWrap {
-      gap: 60px;
+      grid-template-columns: repeat(5, 1fr);
     }
     &__noteWrap {
-      height: 160px;
-      width: 160px;
     }
     &__iconWrap {
       font-size: 66px;
     }
     &__label {
       margin-bottom: 18px;
-      font-size: 14px;
     }
   }
 }
@@ -161,12 +171,22 @@
   .notes {
     gap: 36px;
     &__notesWrap {
-      gap: 60px;
-      grid-template-columns: repeat(6, 1fr);
+      gap: 70px;
+      grid-template-columns: repeat(5, 1fr);
     }
     &__noteWrap {
-      height: 170px;
-      width: 170px;
+      height: 190px;
+      width: 190px;
+    }
+    a {
+      font-size: 18px;
+    }
+    &__iconWrap {
+      font-size: 72px;
+    }
+    &__label {
+      margin-bottom: 20px;
+      font-size: 15px;
     }
   }
 }

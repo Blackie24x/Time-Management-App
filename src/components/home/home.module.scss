@@ -12,6 +12,7 @@
   }
   &__tasksAndStatsWrap {
     display: flex;
+    width: 100%;
     gap: 30px;
     flex-direction: column;
   }
@@ -31,8 +32,9 @@
 @media (min-width: 1200px) {
   .home {
     &__tasksAndStatsWrap {
+      background: rgb(251, 252, 255);
       margin-top: 40px;
-      padding: 0 100px;
+      padding: 0px 100px;
       flex-direction: row;
     }
   }
@@ -42,6 +44,9 @@
   .home {
     &__header {
       height: 120px;
+    }
+    &__tasksAndStatsWrap {
+      padding: 0px 100px;
     }
   }
 }
