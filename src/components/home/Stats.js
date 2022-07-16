@@ -3,7 +3,9 @@ import { Store } from "../../context/Context";
 import styles from "./stats.module.scss";
 const Stats = () => {
   const { doneTasks, totalFocus } = useContext(Store);
-  const focusTime = `${totalFocus / 60}h ${totalFocus % 60}m`;
+  const focusTime = `${Math.round(totalFocus / 3600)}h ${Math.round(
+    totalFocus / 60
+  )}m`;
   return (
     <section className={styles.stats}>
       <div className={styles.stats__wrapper}>

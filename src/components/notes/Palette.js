@@ -28,8 +28,6 @@ const colors = [
 ];
 
 const Palette = ({ palette, setPalette, fontColor, setFontColor }) => {
-  console.log(palette);
-
   return (
     <div
       className={`${styles.creator__paletteWrap} ${

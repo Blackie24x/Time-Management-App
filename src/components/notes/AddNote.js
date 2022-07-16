@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./notes.module.scss";
 import { Store } from "../../context/Context";
 const AddNote = () => {
-  const { setNoteIsCreated, activeNoteMode, setActiveNoteMode } =
-    useContext(Store);
+  const { setNoteIsCreated, setActiveNoteMode } = useContext(Store);
   return (
     <div className={styles.notes__noteWrap}>
       <div

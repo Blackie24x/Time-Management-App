@@ -9,9 +9,8 @@ const CompletedTask = ({ task, setActiveTasksFilter }) => {
   const taskRef = useRef(null);
   const { space, name, theme, complete, priority, id } = task;
   const onTaskDelete = () => {
-    console.log(taskRef.current.classList);
     taskRef.current.classList.add("delete-task");
-    axios.delete("http://localhost:5000/api/tasks", {
+    axios.delete(process.env.REACT_APP_BACKEND_URL + "/tasks", {
       data: { userId, taskId: task.id },
     });
     tasksDispatch(deleteTask(task.id));
@@ -20,11 +19,10 @@ const CompletedTask = ({ task, setActiveTasksFilter }) => {
       tasksDispatch(deleteTask(task.id));
       taskRef.current.classList.remove("delete-task");
     }, 500);
-    console.log(task);
   };
   const onTaskRestore = () => {
     taskRef.current.classList.add("complete-task");
-    const res = axios.patch("http://localhost:5000/api/tasks", {
+    axios.patch(process.env.REACT_APP_BACKEND_URL + "/tasks", {
       space,
       name,
       theme,

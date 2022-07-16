@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Store } from "../../context/Context";
 import styles from "./auth.module.scss";
 import axios from "axios";
 import { getTasks } from "../../context/actions/TasksActions";
 import { getNotes } from "../../context/actions/NotesActions";
+import Spinner from "./Spinner";
 const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
   const {
     authMode,
     setAuthMode,
-    userName,
     setUserName,
     setUserId,
     setSpaces,
-    isLoggedIn,
     setIsLoggedIn,
     setAlertText,
     setIsAlert,
@@ -21,6 +20,9 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
     tasksDispatch,
     notesDispatch,
   } = useContext(Store);
+
+  const [loading, setLoading] = useState(false);
+
   const showAlert = (text) => {
     setAlertText(text);
     setTimeout(() => {
@@ -36,46 +38,57 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     if (name && email && password) {
-      const res = await axios.post("http://localhost:5000/api/users/signup", {
-        name,
-        email,
-        password,
-      });
-      showAlert("Signing Up succedd!");
-      setAuthMode("log in");
+      try {
+        const res = await axios.post(
+          process.env.REACT_APP_BACKEND_URL + "users/signup",
+          {
+            name,
+            email,
+            password,
+          }
+        );
+        showAlert("Signing Up succedd!");
+        setLoading(false);
+        setAuthMode("log in");
+      } catch (err) {
+        showAlert("Something went wrong!");
+        setLoading(false);
+      }
     } else {
       showAlert("Form can't be empty!");
+      setLoading(false);
     }
   };
   const renderSpaces = async (userId) => {
     try {
-      const res = await axios.get("http://localhost:5000/api/spaces", {
-        params: { userId },
-      });
-      console.log(res.data);
+      const res = await axios.get(
+        process.env.REACT_APP_BACKEND_URL + "/spaces",
+        {
+          params: { userId },
+        }
+      );
       const spaces = res.data.spaces.map((space) => {
         return { theme: space.theme, name: space.name };
       });
       setSpaces(spaces);
-      console.log("spaces rendered");
     } catch (err) {
       console.log(err);
     }
   };
   const renderTasks = async (userId) => {
     try {
-      const res = await axios.get("http://localhost:5000/api/tasks", {
-        params: { userId },
-      });
-      console.log(res.data);
+      const res = await axios.get(
+        process.env.REACT_APP_BACKEND_URL + "/tasks",
+        {
+          params: { userId },
+        }
+      );
       const tasks = res.data.tasks.map(
         ({ name, priority, space, theme, complete, id }) => {
           return { name, priority, space, theme, complete, id };
         }
       );
-      console.log(tasks);
       tasksDispatch(getTasks(tasks));
-      console.log("tasks rendered");
     } catch (err) {
       console.log(err);
     }
@@ -83,9 +96,12 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
 
   const renderNotes = async (userId) => {
     try {
-      const res = await axios.get("http://localhost:5000/api/notes", {
-        params: { userId },
-      });
+      const res = await axios.get(
+        process.env.REACT_APP_BACKEND_URL + "/notes",
+        {
+          params: { userId },
+        }
+      );
       const notes = res.data.notes.map(
         ({
           title,
@@ -110,7 +126,6 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
         }
       );
       notesDispatch(getNotes(notes));
-      console.log("notes rendered");
     } catch (err) {
       console.log(err);
     }
@@ -120,34 +135,41 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
     await renderSpaces(userId);
     await renderTasks(userId);
     await renderNotes(userId);
+    resetValues();
     setIsLoggedIn(true);
-    console.log("rendered");
   };
   const logIn = async () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    console.log(email);
     if (email && password) {
       try {
-        const res = await axios.post("http://localhost:5000/api/users/login", {
-          email: email,
-          password: password,
-        });
-        console.log(res);
+        const res = await axios.post(
+          process.env.REACT_APP_BACKEND_URL + "/users/login",
+          {
+            email: email,
+            password: password,
+          }
+        );
         setUserName(res.data.name);
         setUserId(res.data.userId);
         renderUserData(res.data.userId);
         setDoneTasks(res.data.doneTasks);
         setTotalFocus(res.data.totalFocus);
+        setLoading(false);
       } catch (err) {
-        showAlert("You typed ncorrect credentials!");
+        showAlert("You typed incorrect credentials!");
+        setLoading(false);
         return new Error("Logging in failed");
       }
-    } else showAlert(`Form can't be empty`);
+    } else {
+      showAlert(`Form can't be empty`);
+      setLoading(false);
+    }
   };
   const resetValues = () => {
-    // console.log(nameRef);
-    nameRef.current.value = "";
+    if (authMode === "sign up") {
+      nameRef.current.value = "";
+    }
     emailRef.current.value = "";
     passwordRef.current.value = "";
   };
@@ -161,12 +183,12 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
           onClick={(e) => {
             e.preventDefault();
             if (authMode === "log in") {
+              setLoading(true);
               logIn();
-              resetValues();
             } else setAuthMode("log in");
           }}
         >
-          Log In
+          {loading && authMode === "log in" ? <Spinner /> : "Log In"}
         </button>
       );
     } else if (type === "sign up") {
@@ -178,12 +200,13 @@ const AuthButton = ({ type, isSubmit, nameRef, emailRef, passwordRef }) => {
           onClick={(e) => {
             e.preventDefault();
             if (authMode === "sign up") {
+              setLoading(true);
               createAccount();
               resetValues();
             } else setAuthMode("sign up");
           }}
         >
-          Sign Up
+          {loading && authMode === "sign up" ? <Spinner /> : "Sign Up"}
         </button>
       );
     }

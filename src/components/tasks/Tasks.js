@@ -1,19 +1,11 @@
 import TasksMobile from "./TasksMobile";
 import TasksDesktop from "./TasksDesktop";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Media from "react-media";
 import Spaces from "./Spaces";
 import SpacesDesktop from "./SpacesDesktop";
 import { DeleteSpaceBarMobile, DeleteSpaceBarDesktop } from "./DeleteSpaceBar";
 import styles from "./tasks.module.scss";
-import { useContext, useState } from "react";
-import { Store } from "../../context/Context";
 const Tasks = () => {
-  const { activeSpaceIndex, activeSpace, setDeletedSpace } = useContext(Store);
-  const onSpaceDelete = () => {
-    console.log(activeSpace);
-    setDeletedSpace(activeSpace);
-  };
   return (
     <section className={styles.tasks}>
       <div className={styles.tasks__header}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Store } from "../../context/Context";
 import styles from "./spaces.module.scss";
 import uuid from "react-uuid";
@@ -11,7 +11,6 @@ const SpacesDesktop = () => {
     setSpaces,
     addSpaceIsActive,
     setAddSpaceIsActive,
-    activeSpaceIndex,
     setActiveSpaceIndex,
   } = context;
   const createSpaces = () => {

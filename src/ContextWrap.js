@@ -1,5 +1,5 @@
 import React from "react";
-import Context, { Store } from "./context/Context";
+import Context from "./context/Context";
 import App from "./App";
 const ContextWrap = () => {
   return (

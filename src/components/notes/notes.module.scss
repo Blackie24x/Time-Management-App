@@ -42,8 +42,7 @@
     background: rgb(253, 253, 253);
     border-radius: 10px;
     // border: 3px solid rgb(238, 238, 238);
-    box-shadow: 0px 0px 12px rgba(208, 208, 208, 0.4);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     position: relative;
     overflow: hidden;
@@ -59,8 +58,6 @@
     left: 0;
     top: 0;
     clip-path: polygon(0 0, 0% 100%, 100% 0);
-
-    background: rgb(255, 103, 103);
     background: var(--secondary-color);
   }
   &__label {
@@ -81,6 +78,7 @@
   }
   &__noteTitle {
     padding: 0 15px;
+    font-size: 18px;
     color: rgb(90, 90, 90);
   }
 }
@@ -115,6 +113,22 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .notes {
+    &__notesArea {
+      gap: 60px;
+    }
+    &__noteArea {
+      max-width: 210px;
+      max-height: 210px;
+    }
+    &__noteTitle {
+      font-size: 19px;
+    }
+  }
+}
+
 @media (min-width: 1600px) {
   .notes {
     &__notesWrap {
@@ -126,7 +140,7 @@
     }
     &__notesArea {
       grid-template-columns: repeat(5, 1fr);
-      gap: 70px;
+      gap: 80px;
     }
     &__iconWrap {
       font-size: 72px;
@@ -156,6 +170,9 @@
     &__noteArea {
       max-width: 240px;
       max-height: 240px;
+    }
+    &__noteTitle {
+      font-size: 20px;
     }
   }
 }

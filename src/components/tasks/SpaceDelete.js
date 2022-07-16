@@ -8,7 +8,6 @@ const SpaceDelete = () => {
     setSpaces,
     spaces,
     deletedSpace,
-    activeSpace,
     userId,
     setActiveSpace,
   } = useContext(Store);
@@ -16,15 +15,12 @@ const SpaceDelete = () => {
     const newSpaces = spaces.filter(
       (space) => deletedSpace.name !== space.name
     );
-    console.log(spaces, newSpaces);
     const delSpaceName = deletedSpace.name;
     setDeletedSpace(null);
-    axios.delete("http://localhost:5000/api/spaces", {
+    axios.delete(process.env.REACT_APP_BACKEND_URL + "/spaces", {
       data: { name: delSpaceName, userId },
     });
-    console.log(spaces[0]);
     setSpaces(newSpaces);
-    console.log(spaces[0]);
     if (newSpaces.length) setActiveSpace(newSpaces[0]);
     else setActiveSpace(null);
   };

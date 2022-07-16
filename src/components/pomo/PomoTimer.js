@@ -3,6 +3,7 @@ import { Store } from "../../context/Context";
 import styles from "./timer.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import uuid from "react-uuid";
+import axios from "axios";
 
 const PomoTimer = ({ circleSize }) => {
   const circlePI = circleSize * 2 * 3.14;
@@ -10,9 +11,7 @@ const PomoTimer = ({ circleSize }) => {
     pomoMode,
     setPomoMode,
     pomoTime,
-    setPomoTime,
     breakTime,
-    setBreakTime,
     isPaused,
     setIsPaused,
     remainingTime,
@@ -20,12 +19,13 @@ const PomoTimer = ({ circleSize }) => {
     remainingBreak,
     setRemainingBreak,
     pomos,
-    setPomos,
     donePomos,
     setDonePomos,
+    totalFocus,
+    setTotalFocus,
+    doneTasks,
   } = useContext(Store);
-  const pomoModeRef = useRef(pomoMode);
-  const pomoTimeRef = useRef(pomoTime);
+
   const insidePomoRef = useRef(null);
   let pomoMinutes = Math.floor(remainingTime / 60);
   let pomoSeconds = remainingTime % 60;
@@ -33,7 +33,6 @@ const PomoTimer = ({ circleSize }) => {
   let breakSeconds = remainingBreak % 60;
   let remainingTimeRef = remainingTime;
   let remainingBreakRef = remainingBreak;
-  console.log(remainingBreakRef);
   const createPomos = useCallback(() => {
     const pomosElements = [];
     for (let i = 0; i < pomos; i++) {
@@ -48,7 +47,6 @@ const PomoTimer = ({ circleSize }) => {
     return pomosElements;
   }, [pomos, donePomos]);
   const setTime = () => {
-    console.log(pomoMode);
     return pomoMode === "break"
       ? `${breakMinutes} : ${
           breakSeconds < 10 ? `0${breakSeconds}` : breakSeconds
@@ -58,27 +56,28 @@ const PomoTimer = ({ circleSize }) => {
         }`;
   };
   const tick = () => {
-    console.log(pomoMode);
     if (pomoMode === "pomo") {
-      console.log(remainingTimeRef);
       if (remainingTimeRef > 0) {
         remainingTimeRef--;
         setRemainingTime((remainingTime) => remainingTime - 1);
       } else {
+        const newTotalFocus = totalFocus + pomoTime;
+        setTotalFocus(newTotalFocus);
+        axios.patch(process.env.REACT_APP_BACKEND_URL + "/stats", {
+          totalFocus: newTotalFocus,
+          doneTasks,
+        });
         setRemainingTime(0);
-        // setIsPaused(true);
         setPomoMode("break");
         setRemainingBreak(breakTime);
         setDonePomos((donePomos) => donePomos + 1);
       }
     } else if (pomoMode === "break") {
-      console.log(remainingBreakRef);
       if (remainingBreakRef > 0) {
         remainingBreakRef--;
         setRemainingBreak((remainingBreak) => remainingBreak - 1);
       } else {
         setRemainingBreak(0);
-        // setIsPaused(true);
         setPomoMode("pomo");
         setRemainingTime(pomoTime);
       }
@@ -92,14 +91,9 @@ const PomoTimer = ({ circleSize }) => {
     let interval;
     if (donePomos < pomos) interval = setInterval(timeInterval, 1000);
     else {
-      console.log(pomoMode !== "done");
       if (pomoMode !== "configure") setPomoMode("done");
       setRemainingTime(pomoTime);
       setRemainingBreak(breakTime);
-      // insidePomoRef.current.classList.remove("active");
-      // setTimeout(() => {
-      //   insidePomoRef.current.classList.add("active");
-      // }, 500);
     }
 
     return () => clearInterval(interval);
@@ -155,10 +149,8 @@ const PomoTimer = ({ circleSize }) => {
           <button
             className={styles.timer__handleBtn}
             onClick={() => {
-              console.log("btn");
               if (pomoMode === "configure") setPomoMode("pomo");
               setIsPaused(!isPaused);
-              console.log(isPaused);
 
               // tick();
             }}

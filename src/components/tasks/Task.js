@@ -9,14 +9,13 @@ import { Store } from "../../context/Context";
 import styles from "./tasks-space.module.scss";
 const Task = ({ task }) => {
   const { space, name, theme, complete, priority, id } = task;
-  const { tasksDispatch, userId } = useContext(Store);
+  const { tasksDispatch, userId, setDoneTasks, doneTasks, totalFocus } =
+    useContext(Store);
   const taskRef = useRef(null);
   const completeBtnRef = useRef(null);
   const onTaskDelete = () => {
-    console.log(taskRef.current.classList);
-
     taskRef.current.classList.add("delete-task");
-    const res = axios.delete("http://localhost:5000/api/tasks", {
+    axios.delete(process.env.REACT_APP_BACKEND_URL + "/tasks", {
       data: { userId, taskId: task.id },
     });
 
@@ -24,10 +23,9 @@ const Task = ({ task }) => {
       taskRef.current.classList.remove("delete-task");
       tasksDispatch(deleteTask(task.id));
     }, 500);
-    console.log(task);
   };
   const onPrioritizeTask = () => {
-    const res = axios.patch("http://localhost:5000/api/tasks", {
+    const res = axios.patch(process.env.REACT_APP_BACKEND_URL + "/tasks", {
       space,
       name,
       theme,
@@ -37,10 +35,19 @@ const Task = ({ task }) => {
     });
     tasksDispatch(prioritizeTask(task));
   };
+  const statsOnComplete = () => {
+    const curTotalFocus = totalFocus;
+    const curDoneTasks = doneTasks;
+    axios.patch(process.env.REACT_APP_BACKEND_URL + "/users/stats", {
+      doneTasks: curDoneTasks + 1,
+      totalFocus: curTotalFocus,
+    });
+    setDoneTasks(doneTasks + 1);
+  };
   const onCompleteTask = () => {
     completeBtnRef.current.style.background = `var(--secondary-color)`;
 
-    const res = axios.patch("http://localhost:5000/api/tasks", {
+    axios.patch(process.env.REACT_APP_BACKEND_URL + "/tasks", {
       space,
       name,
       theme,
@@ -54,6 +61,7 @@ const Task = ({ task }) => {
     setTimeout(() => {
       tasksDispatch(completeTask(task.id));
       taskRef.current.classList.remove("complete-task");
+      statsOnComplete();
     }, 700);
   };
   return (

@@ -4,11 +4,6 @@ import { Store } from "../../context/Context";
 import Task from "./Task";
 import CompletedTask from "./CompletedTask";
 
-// import {
-//   completeTask,
-//   deleteTask,
-//   restoreTask,
-// } from "../../context/actions/TasksActions";
 import AddTask from "./AddTask";
 
 const TasksSpace = ({
@@ -17,7 +12,6 @@ const TasksSpace = ({
   spaceIndex,
   spacesHeightRef,
 }) => {
-  console.log("rerender");
   const [activeTasksFilter, setActiveTasksFilter] = useState("ToDo");
   const ToDoRef = useRef(null);
   const completeRef = useRef(null);
@@ -29,10 +23,9 @@ const TasksSpace = ({
   const [taskIsAdding, setTaskIsAdding] = useState(false);
 
   const context = useContext(Store);
-  const { tasksStore, tasksDispatch } = context;
+  const { tasksStore } = context;
   const createTasks = () => {
     if (context.tasksStore) {
-      // const { tasksStore, tasksDispatch } = context;
       const spaceTasks = tasksStore.filter(
         (task) => task.space === activeSpace.name && !task.complete
       );

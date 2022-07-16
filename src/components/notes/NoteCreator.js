@@ -71,7 +71,7 @@ const NoteCreator = () => {
         isItalic,
         id: createdId,
       };
-      axios.post("http://localhost:5000/api/notes", {
+      axios.post(process.env.REACT_APP_BACKEND_URL + "/notes", {
         title,
         fontColor,
         fontSize,
@@ -100,7 +100,7 @@ const NoteCreator = () => {
         isItalic,
         id: editedNote.id,
       };
-      axios.patch("http://localhost:5000/api/notes", {
+      axios.patch(process.env.REACT_APP_BACKEND_URL + "/notes", {
         title,
         fontColor,
         fontSize,
@@ -115,7 +115,7 @@ const NoteCreator = () => {
     } else showAlert("You can't create empty note");
   };
   const onDeleteNote = () => {
-    axios.delete("http://localhost:5000/api/notes", {
+    axios.delete(process.env.REACT_APP_BACKEND_URL + "/notes", {
       data: { id: editedNote.id, userId },
     });
     notesDispatch(deleteNote(editedNote.id));
@@ -132,6 +132,7 @@ const NoteCreator = () => {
           type="text"
           className={styles.creator__title}
           placeholder="Note Title"
+          spellcheck="false"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -239,6 +240,7 @@ const NoteCreator = () => {
           onClick={() => setPalette(false)}
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          spellcheck="false"
         ></textarea>
         <div className={styles.creator__actionBtns}>
           {deleteAlert ? (

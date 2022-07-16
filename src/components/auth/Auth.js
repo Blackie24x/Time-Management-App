@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
 import styles from "./auth.module.scss";
 import image from "../../images/authTheme1.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AuthButton from "./AuthButton";
 import { Store } from "../../context/Context";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
 const Auth = () => {
-  const { authMode, setAuthMode } = useContext(Store);
+  const { authMode } = useContext(Store);
   const createForm = () => {
     if (authMode === "log in") {
-      console.log("log in mode");
       return <LogInForm />;
     } else if (authMode === "sign up") {
       return <SignUpForm />;

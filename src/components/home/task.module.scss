@@ -22,20 +22,28 @@
     font-size: 12px;
     border-radius: 3px;
     border: 1px solid var(--secondary-color);
-    &:hover {
-      background: var(--secondary-color);
-    }
+    // &:hover {
+    //   background: var(--secondary-color);
+    // }
   }
   &__theme {
     position: absolute;
     right: 0px;
     border-radius: 0px 4px 4px 0px;
-    width: 5px;
+    width: 6px;
     height: 100%;
   }
   &__taskName {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-color);
+  }
+}
+
+@media (min-width: 1200px) {
+  .task {
+    &__doneCheck {
+      margin-right: 24px;
+    }
   }
 }

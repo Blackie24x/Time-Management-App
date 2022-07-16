@@ -69,14 +69,12 @@ const AddSpaceDesktop = () => {
       const spaceNameExist = spaces.some((space) => space.name === pickedName);
 
       if (!spaceNameExist) {
-        try {
-          const res = await axios.post("http://localhost:5000/api/spaces", {
-            theme: pickedColor,
-            name: pickedName,
-            userId,
-          });
-          console.log(res);
-        } catch {}
+        await axios.post(process.env.REACT_APP_BACKEND_URL + "/spaces", {
+          theme: pickedColor,
+          name: pickedName,
+          userId,
+        });
+
         setSpaces(spaces.length ? [...spaces, space] : [space]);
         setAddSpaceIsActive(false);
         setActiveSpace(space);

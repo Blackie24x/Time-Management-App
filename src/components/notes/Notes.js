@@ -6,7 +6,7 @@ import NoteView from "./NoteView";
 import NoteCreator from "./NoteCreator";
 import { Store } from "../../context/Context";
 const Notes = () => {
-  const { noteIsCreated, setNoteIsCreated, notesStore } = useContext(Store);
+  const { noteIsCreated, notesStore } = useContext(Store);
   return (
     <section className={styles.notes}>
       <div className={styles.notes__header}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import styles from "./spaces.module.scss";
 import { Store } from "../../context/Context";
 import uuid from "react-uuid";
@@ -90,7 +90,6 @@ const Space = ({
     <div
       className={styles.spaces__space}
       onClick={() => {
-        console.log(deletedSpace);
         setActiveSpace(space);
         setAddSpaceIsActive(false);
         if (deletedSpace !== null) setDeletedSpace(null);

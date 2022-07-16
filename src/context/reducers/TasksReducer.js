@@ -41,9 +41,6 @@ export const tasksReducer = (state = [], action) => {
       const filteredState = state.filter((el) => el.id !== task.id);
       if (task.priority) return [task, ...filteredState];
       else return [...filteredState, task];
-      // const sortedState = state.sort((a, b) => {
-      //   return a.priority < b.priority ? 1 : -1;
-      // });
     }
     default:
       return state;

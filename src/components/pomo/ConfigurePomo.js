@@ -16,10 +16,8 @@ const ConfigurePomo = () => {
     setPomos,
     setDonePomos,
     pomos,
-    isPaused,
     setIsPaused,
   } = useContext(Store);
-  const onSliderChange = () => {};
   return (
     <section
       className={`${styles.pomoConfig} ${

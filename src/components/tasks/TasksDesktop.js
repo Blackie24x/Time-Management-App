@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Store } from "../../context/Context";
 import styles from "./tasks-desktop.module.scss";
 import TasksSpaceDesktop from "./TasksSpaceDesktop";
-import AddSpace from "./AddSpace";
 import AddSpaceDesktop from "./AddSpaceDesktop";
 import uuid from "react-uuid";
 import SpaceDelete from "./SpaceDelete";
@@ -10,7 +9,6 @@ import SpaceDelete from "./SpaceDelete";
 const TasksDesktop = () => {
   const context = useContext(Store);
   const {
-    activeSpace,
     setActiveSpace,
     spaces,
     setSpaces,
@@ -19,9 +17,7 @@ const TasksDesktop = () => {
     activeSpaceIndex,
     taskIsAdding,
     setTaskIsAdding,
-    setActiveSpaceIndex,
-    setDeletedSpaceIndex,
-    deletedSpaceIndex,
+
     deletedSpace,
   } = context;
   const renderSpaces = () => {

@@ -5,7 +5,6 @@ import Media from "react-media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ConfigurePomo from "./ConfigurePomo";
 import { Store } from "../../context/Context";
-import { queries } from "@testing-library/react";
 const Pomo = () => {
   const { pomoMode, setPomoMode, setRemainingTime, pomoTime, setDonePomos } =
     useContext(Store);

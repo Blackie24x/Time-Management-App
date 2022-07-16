@@ -44,7 +44,10 @@
     margin-top: 50px;
 
     button {
-      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
       font-size: 15px;
       width: 75%;
       max-width: 360px;
@@ -148,7 +151,7 @@
       display: flex;
       max-width: 660px;
       button {
-        padding: 8px;
+        height: 43px;
         max-width: 280px;
         font-size: 16px;
       }

@@ -11,6 +11,7 @@ const AddTask = ({ space, setTaskIsAdding }) => {
   const { tasksDispatch } = context;
 
   const addTask = () => {
+    const createdId = uuid();
     if (context && taskName) {
       const task = {
         name: taskName,
@@ -18,15 +19,15 @@ const AddTask = ({ space, setTaskIsAdding }) => {
         space: space.name,
         theme: space.theme,
         complete: false,
-        id: uuid(),
+        id: createdId,
       };
-      axios.post("http://localhost:5000/api/tasks", {
+      axios.post(process.env.REACT_APP_BACKEND_URL + "/tasks", {
         name: taskName,
         priority,
         space: space.name,
         theme: space.theme,
         complete: false,
-        id: uuid(),
+        id: createdId,
         userId: context.userId,
       });
       tasksDispatch(createTask(task));

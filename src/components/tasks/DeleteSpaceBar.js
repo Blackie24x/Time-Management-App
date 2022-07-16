@@ -1,4 +1,4 @@
-import { react, useContext } from "react";
+import { useContext } from "react";
 import { Store } from "../../context/Context";
 import styles from "./tasks.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +6,6 @@ export const DeleteSpaceBarMobile = () => {
   const { setOptions, options, activeSpace, setDeletedSpace, spaces } =
     useContext(Store);
   const onSpaceDelete = () => {
-    console.log(activeSpace);
     setDeletedSpace(activeSpace);
   };
   return (
@@ -32,14 +31,7 @@ export const DeleteSpaceBarMobile = () => {
 };
 
 export const DeleteSpaceBarDesktop = () => {
-  const {
-    setOptions,
-    options,
-    activeSpace,
-    setDeletedSpace,
-    spaces,
-    deletedSpace,
-  } = useContext(Store);
+  const { setOptions, options, setDeletedSpace, spaces } = useContext(Store);
 
   const renderDeleteBtns = () => {
     return spaces.map((space) => {
@@ -47,9 +39,7 @@ export const DeleteSpaceBarDesktop = () => {
         <p
           style={{ color: space.theme }}
           onClick={() => {
-            console.log(space);
             setDeletedSpace(space);
-            console.log(deletedSpace);
           }}
         >
           Delete {space.name}
@@ -70,8 +60,6 @@ export const DeleteSpaceBarDesktop = () => {
         }`}
       >
         {renderDeleteBtns()}
-        {/* <p onClick={() => onSpaceDelete()}> Delete Space</p>{" "} */}
-        {/* <FontAwesomeIcon icon="fa-solid fa-chevron-right" /> */}
         <div onClick={() => {}}>
           <FontAwesomeIcon icon="fa-solid fa-xmark" />
         </div>

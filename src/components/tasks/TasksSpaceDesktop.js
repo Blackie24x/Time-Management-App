@@ -1,11 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styles from "./tasks-space.module.scss";
 import { Store } from "../../context/Context";
-import {
-  completeTask,
-  deleteTask,
-  restoreTask,
-} from "../../context/actions/TasksActions";
+
 import AddTask from "./AddTask";
 import Task from "./Task";
 import CompletedTask from "./CompletedTask";
@@ -20,7 +16,7 @@ const TasksSpaceDesktop = ({ activeSpace, activeSpaceIndex, spaceIndex }) => {
   const [taskIsAdding, setTaskIsAdding] = useState(false);
 
   const context = useContext(Store);
-  const { tasksStore, tasksDispatch } = context;
+  const { tasksStore } = context;
 
   useEffect(() => {
     tasksAreaRef.current.style.height = `${

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Store } from "../../context/Context";
 import styles from "./tasks-mobile.module.scss";
 import uuid from "react-uuid";
@@ -18,18 +18,14 @@ const TasksMobile = () => {
     setSpaces,
     setAddSpaceIsActive,
     activeSpaceIndex,
-    setActiveSpaceIndex,
-    // spacesHeight,
-    // setSpacesHeight,
+
     deletedSpace,
-    setDeletedSpace,
   } = context;
   useEffect(() => {
     switchRef.current.style.height = `${spacesHeightRef.current}px`;
   }, [spacesHeightRef.current]);
   const renderSpaces = () => {
     const actualSpaces = spaces.map((space, i) => {
-      console.log(deletedSpace === activeSpace);
       return deletedSpace !== null && deletedSpace === activeSpace ? (
         <SpaceDelete />
       ) : (

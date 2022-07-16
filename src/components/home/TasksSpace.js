@@ -4,7 +4,6 @@ import Task from "./Task";
 import styles from "./tasks-space.module.scss";
 const TasksSpace = () => {
   const { tasksStore } = useContext(Store);
-  console.log(tasksStore);
   const toDoTasks = tasksStore.filter((task) => task.complete === false);
   const renderTasks = () => {
     const sortedTasks = [...toDoTasks].sort((a, b) => {
@@ -12,7 +11,6 @@ const TasksSpace = () => {
       if (a.priority >= b.priority) return -1;
       return 1;
     });
-    console.log(sortedTasks);
     return sortedTasks.map((task, i) => {
       if (i > 4) return null;
       return <Task task={task} />;

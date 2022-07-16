@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./form.module.scss";
 import AuthButton from "./AuthButton";
 const LogInForm = () => {

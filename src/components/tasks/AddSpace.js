@@ -57,12 +57,14 @@ const AddSpace = ({ spaceIndex }) => {
 
       if (!spaceNameExist) {
         try {
-          const res = await axios.post("http://localhost:5000/api/spaces", {
-            theme: pickedColor,
-            name: pickedName,
-            userId,
-          });
-          console.log(res);
+          const res = await axios.post(
+            process.env.REACT_APP_BACKEND_URL + "/spaces",
+            {
+              theme: pickedColor,
+              name: pickedName,
+              userId,
+            }
+          );
         } catch {}
         setSpaces(spaces.length ? [...spaces, space] : [space]);
         setAddSpaceIsActive(false);
@@ -74,7 +76,6 @@ const AddSpace = ({ spaceIndex }) => {
   };
 
   const countLeftStyle = () => {
-    console.log(spaceIndex, activeSpaceIndex);
     switch (activeSpaceIndex) {
       case 0: {
         return 100 * spaceIndex;
