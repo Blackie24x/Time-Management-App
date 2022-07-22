@@ -1,4 +1,4 @@
-#Time-Management-App
+# Time-Management-App
 
 App which after logging in, allows you to create tasks, count the time of your focus and collect notes created by you.
 
